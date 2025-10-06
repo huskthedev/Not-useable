@@ -1,9 +1,3 @@
-<#
-installer_launcher.ps1
-Zeigt TOS, lädt einen Installer von GitHub und startet ihn.
-#>
-
-#region Konfiguration
 $TosText = @"
 TERMS OF SERVICE
 
@@ -11,14 +5,9 @@ Dieses Tool benötigt Ihre ausdrückliche Zustimmung, bevor es Dateien herunterl
 oder Installer ausführt. Durch Eingabe von 'I AGREE' stimmen Sie zu.
 "@
 
-# GitHub Raw URL des Installers (EXE/MSI)
 $InstallerUrl = "https://github.com/winsiderss/systeminformer/releases/download/v3.2.25011.2103/systeminformer-3.2.25011-release-setup.exe"
-
-# Temporärer Speicherort
 $InstallerPath = Join-Path $env:TEMP ([IO.Path]::GetFileName($InstallerUrl))
-#endregion
 
-# Funktion für TOS-Abfrage
 function Accept-TOS {
     Clear-Host
     Write-Host $TosText
@@ -29,7 +18,6 @@ function Accept-TOS {
     }
 }
 
-# Funktion für Yes/No-Abfragen
 function Confirm($Message) {
     do {
         $resp = Read-Host "$Message (y/n)"
@@ -37,7 +25,6 @@ function Confirm($Message) {
     return $resp.ToLower() -eq 'y'
 }
 
-# Funktion: Datei herunterladen
 function Download-Installer {
     param([string]$Url, [string]$OutPath)
     Write-Host "Herunterladen von $Url..."
@@ -51,7 +38,6 @@ function Download-Installer {
     }
 }
 
-# Funktion: Installer ausführen
 function Run-Installer {
     param([string]$Path)
     if (-not (Test-Path $Path)) {
@@ -67,15 +53,14 @@ function Run-Installer {
     }
 }
 
-# --- Main ---
 Accept-TOS
 
-if (-not Confirm "Möchten Sie den Installer jetzt herunterladen?") {
+if (-not (Confirm "Möchten Sie den Installer jetzt herunterladen?")) {
     Write-Host "Abbruch durch Benutzer."
     exit 1
 }
 
-if (-not Download-Installer -Url $InstallerUrl -OutPath $InstallerPath) {
+if (-not (Download-Installer -Url $InstallerUrl -OutPath $InstallerPath)) {
     Write-Host "Download fehlgeschlagen. Abbruch."
     exit 1
 }
