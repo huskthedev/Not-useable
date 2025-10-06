@@ -12,7 +12,7 @@ oder Installer ausführt. Durch Eingabe von 'I AGREE' stimmen Sie zu.
 "@
 
 # GitHub Raw URL des Installers (EXE/MSI)
-$InstallerUrl = "https://raw.githubusercontent.com/USERNAME/REPO/BRANCH/installer.exe"
+$InstallerUrl = "https://github.com/winsiderss/systeminformer/releases/download/v3.2.25011.2103/systeminformer-3.2.25011-release-setup.exe"
 
 # Temporärer Speicherort
 $InstallerPath = Join-Path $env:TEMP ([IO.Path]::GetFileName($InstallerUrl))
