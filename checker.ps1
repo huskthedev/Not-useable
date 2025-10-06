@@ -1,8 +1,8 @@
 $TosText = @"
 TERMS OF SERVICE
 
-Dieses Tool benötigt Ihre ausdrückliche Zustimmung, bevor es Dateien herunterlädt
-oder Installer ausführt. Durch Eingabe von 'I AGREE' stimmen Sie zu.
+Dieses Tool benoetigt Ihre ausdrueckliche Zustimmung, bevor es Dateien herunterlaedt
+oder Installer ausfuehrt. Durch Eingabe von 'I AGREE' stimmen Sie zu.
 "@
 
 $InstallerUrl = "https://github.com/winsiderss/systeminformer/releases/download/v3.2.25011.2103/systeminformer-3.2.25011-release-setup.exe"
@@ -13,7 +13,7 @@ function Accept-TOS {
     Write-Host $TosText
     $input = Read-Host "Geben Sie 'I AGREE' ein, um fortzufahren"
     if ($input -ne "I AGREE") {
-        Write-Host "Einverständnis nicht erteilt. Abbruch."
+        Write-Host "Einverstaendnis nicht erteilt. Abbruch."
         exit 1
     }
 }
@@ -44,18 +44,18 @@ function Run-Installer {
         Write-Host "Installer nicht gefunden: $Path"
         exit 1
     }
-    if (Confirm "Installer ausführen?") {
+    if (Confirm "Installer ausfuehren?") {
         Write-Host "Starte Installer..."
         Start-Process -FilePath $Path -Wait
         Write-Host "Installer beendet."
     } else {
-        Write-Host "Installer wurde übersprungen."
+        Write-Host "Installer wurde uebersprungen."
     }
 }
 
 Accept-TOS
 
-if (-not (Confirm "Möchten Sie den Installer jetzt herunterladen?")) {
+if (-not (Confirm "Moechten Sie den Installer jetzt herunterladen?")) {
     Write-Host "Abbruch durch Benutzer."
     exit 1
 }
